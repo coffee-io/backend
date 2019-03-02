@@ -1,7 +1,7 @@
 terraform {
     backend "s3" {
         bucket = "coffee-terraform-backend"
-        key    = "frontend"
+        key    = "backend"
         region = "us-east-1"
     }
 }
