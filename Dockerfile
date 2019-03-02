@@ -2,7 +2,7 @@ FROM golang:1.12
 
 RUN apt-get update \
 	&& apt-get install -y awscli git \
-	&& github.com/aws/aws-lambda-go/lambda
+	&& github.com/aws/aws-lambda-go
 
 #	&& go get github.com/aws/aws-sdk-go/aws \
 #	&& go get github.com/aws/aws-sdk-go/aws/session \
