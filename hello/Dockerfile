@@ -1,4 +1,4 @@
-FROM gobuild
+FROM gobuild-lambda
 
 WORKDIR /go/src/app
 COPY . .
