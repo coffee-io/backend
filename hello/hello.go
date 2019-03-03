@@ -52,7 +52,11 @@ func router(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIG
     if strings.ToUpper(req.HTTPMethod) == "GET" {
         return get(req)
     } else {
-        return clientError(http.StatusMethodNotAllowed)
+        // return clientError(http.StatusMethodNotAllowed)
+        return events.APIGatewayProxyResponse{
+            StatusCode: status,
+            Body:       string(req)
+        }, nil
     }
 }
 
