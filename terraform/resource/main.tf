@@ -16,6 +16,10 @@ resource "aws_lambda_function" "resource" {
 	memory_size			 = "${var.memory_size}"
 	s3_bucket        = "coffee-artifacts"
 	s3_key           = "${var.name}.zip"
+}
+
+resource "null_resource" {
+	depends_on = ["aws_lambda_function.resource"]
 	provisioner "local-exec" {
 		command = "aws lambda update-function-code --function-name ${var.name} --s3-bucket coffee-artifacts --s3-key ${var.name}.zip --publish"
 	}
