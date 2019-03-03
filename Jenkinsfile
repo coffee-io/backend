@@ -35,6 +35,7 @@ pipeline {
             steps {
                 sh """
                     cd terraform
+                    rm -rf .terraform
                     terraform init -no-color -input=false 
                     terraform apply -no-color -input=false -auto-approve -lock=false
                 """
