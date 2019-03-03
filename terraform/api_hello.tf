@@ -25,6 +25,9 @@ resource "aws_api_gateway_method_response" "hello_200" {
   resource_id = "${aws_api_gateway_resource.hello.id}"
   http_method = "${aws_api_gateway_method.hello_get.http_method}"
   status_code = "200"
+	response_models {
+		"application/json" = "Empty"
+	}
 }
 
 data "aws_caller_identity" "current" {}
