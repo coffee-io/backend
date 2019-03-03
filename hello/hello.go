@@ -25,12 +25,12 @@ func serverError(err error) (events.APIGatewayProxyResponse, error) {
 
     return events.APIGatewayProxyResponse{
         StatusCode: http.StatusInternalServerError,
-        Body:       http.StatusText(http.StatusInternalServerError),
+        Body:       http.StatusText(http.StatusInternalServerError) + " - " + err.Error(),
     }, nil
 }
 
 func get(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-    js, err := json.Marshal(Response { Value: "worlde" })
+    js, err := json.Marshal(Response { Value: "world" })
     if err != nil {
         return serverError(err)
     }
