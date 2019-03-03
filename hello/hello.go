@@ -1,6 +1,7 @@
 package main
 
 import (
+    "context"
     "encoding/json"
     "github.com/aws/aws-lambda-go/events"
     "github.com/aws/aws-lambda-go/lambda"
@@ -45,8 +46,8 @@ func get(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, err
     }, nil
 }
 
-func router(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-    errorLogger.Println(req.HTTPMethod)
+func router(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+    errorLogger.Println(req)
     if strings.ToUpper(req.HTTPMethod) == "GET" {
         return get(req)
     } else {
