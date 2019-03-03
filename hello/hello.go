@@ -5,6 +5,7 @@ import (
     "github.com/aws/aws-lambda-go/events"
     "github.com/aws/aws-lambda-go/lambda"
     "net/http"
+    "strings"
 )
 
 type Request struct {}
@@ -41,7 +42,7 @@ func get(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, err
 }
 
 func router(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-    if req.HTTPMethod == "GET" {
+    if strings.ToUpper(req.HTTPMethod) == "GET" {
         return get(req)
     } else {
         return clientError(http.StatusMethodNotAllowed)
