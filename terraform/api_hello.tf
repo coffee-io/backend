@@ -35,7 +35,7 @@ resource "aws_api_gateway_integration_response" "options_integration_response" {
   resource_id = "${aws_api_gateway_resource.hello.id}"
   http_method = "${aws_api_gateway_method.hello_get.http_method}"
   status_code = "${aws_api_gateway_method_response.hello_200.status_code}"
-	depends_on = ["aws_api_gateway_method_response.hello_200"]
+	depends_on = ["aws_api_gateway_integration.hello_integration"]
 }
 
 data "aws_caller_identity" "current" {}
