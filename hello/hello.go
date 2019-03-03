@@ -3,7 +3,6 @@ package main
 import (
     "context"
     "encoding/json"
-    "fmt"
     "github.com/aws/aws-lambda-go/events"
     "github.com/aws/aws-lambda-go/lambda"
     "log"
@@ -49,16 +48,10 @@ func get(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, err
 }
 
 func router(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-    errorLogger.Println(ctx)
-    errorLogger.Println(req)
     if strings.ToUpper(req.HTTPMethod) == "GET" {
         return get(req)
     } else {
-        // return clientError(http.StatusMethodNotAllowed)
-        return events.APIGatewayProxyResponse{
-            StatusCode: http.StatusOK,
-            Body:       fmt.Sprint(req),
-        }, nil
+        return clientError(http.StatusMethodNotAllowed)
     }
 }
 
