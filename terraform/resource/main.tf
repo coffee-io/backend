@@ -23,6 +23,9 @@ resource "null_resource" "update_lambda" {
 	provisioner "local-exec" {
 		command = "aws lambda update-function-code --function-name ${var.name} --s3-bucket coffee-artifacts --s3-key ${var.name}.zip --publish"
 	}
+	triggers {
+		build_number = "${timestamp()}" 
+	}
 }
 
 resource "aws_cloudwatch_log_group" "resource" {
