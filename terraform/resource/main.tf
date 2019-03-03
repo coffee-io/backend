@@ -82,7 +82,7 @@ resource "aws_api_gateway_integration" "integration" {
   rest_api_id             = "${data.aws_api_gateway_rest_api.api.id}"
   resource_id             = "${aws_api_gateway_resource.resource.id}"
   http_method             = "${aws_api_gateway_method.method.http_method}"
-  type                    = "AWS"
+  type                    = "AWS_PROXY"
   integration_http_method = "POST"
   uri                     = "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${aws_lambda_function.resource.arn}/invocations"
 }
