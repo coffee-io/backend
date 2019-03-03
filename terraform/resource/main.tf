@@ -1,19 +1,16 @@
-variable "rest_api_name" {}
-variable "name"          {}
-variable "runtime"       { default = "go1.x" } 
-variable "memory_size"   { default = 128 }
+variable "rest_api_name"   {}
+variable "name"            {}
+variable "lambda_role_arn" {}
+variable "runtime"         { default = "go1.x" } 
+variable "memory_size"     { default = 128 }
 
 # 
 # lambda
 #
 
-data "aws_iam_role" "iam_for_lambda" {
-	name = "iam_for_lambda"
-}
-
 resource "aws_lambda_function" "resource" {
   function_name    = "${var.name}"
-  role             = "${data.aws_iam_role.iam_for_lambda.arn}"
+  role             = "${var.lambda_role_arn}"
 	handler          = "${var.name}"
   runtime          = "${var.runtime}"
 	memory_size			 = "${var.memory_size}"

@@ -7,10 +7,10 @@ resource "aws_api_gateway_rest_api" "coffee" {
 # resources
 
 module "resource" {
-	source        = "./resource"
-	rest_api_name = "${aws_api_gateway_rest_api.coffee.name}"
-	name          = "hello"
-	// TODO - multiple responses
+	source          = "./resource"
+	rest_api_name   = "${aws_api_gateway_rest_api.coffee.name}"
+	name            = "hello"
+	lambda_role_arn = "${aws_iam_role.iam_for_lambda.arn}"
 }
 
 # deployment
