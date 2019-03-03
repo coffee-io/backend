@@ -43,7 +43,7 @@ func get(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, err
     }
     return events.APIGatewayProxyResponse{
         StatusCode: http.StatusOK,
-        Headers:    map[string]string{"Access-Control-Allow-Origin", "*"},
+        Headers:    map[string]string{"Access-Control-Allow-Origin": "*"},
         Body:       string(js),
     }, nil
 }
