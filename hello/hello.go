@@ -46,7 +46,7 @@ func get(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, err
 }
 
 func router(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-    errorLogger.Println(req)
+    errorLogger.Println(req.HTTPMethod)
     if strings.ToUpper(req.HTTPMethod) == "GET" {
         return get(req)
     } else {
