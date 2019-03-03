@@ -4,9 +4,13 @@ import (
     "encoding/json"
     "github.com/aws/aws-lambda-go/events"
     "github.com/aws/aws-lambda-go/lambda"
+    "log"
     "net/http"
+    "os"
     "strings"
 )
+
+var errorLogger = log.New(os.Stderr, "ERROR ", log.Llongfile)
 
 type Request struct {}
 
@@ -22,11 +26,11 @@ func clientError(status int) (events.APIGatewayProxyResponse, error) {
 }
 
 func serverError(err error) (events.APIGatewayProxyResponse, error) {
-    // errorLogger.Println(err.Error())
+    errorLogger.Println(err.Error())
 
     return events.APIGatewayProxyResponse{
         StatusCode: http.StatusInternalServerError,
-        Body:       http.StatusText(http.StatusInternalServerError) + " - " + err.Error(),
+        Body:       http.StatusText(http.StatusInternalServerError),
     }, nil
 }
 
