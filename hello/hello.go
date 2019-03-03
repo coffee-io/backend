@@ -30,7 +30,7 @@ func serverError(err error) (events.APIGatewayProxyResponse, error) {
 }
 
 func get(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-    js, err := json.Marshal(Response { Value: "world" })
+    js, err := json.Marshal(Response { Value: "worlde" })
     if err != nil {
         return serverError(err)
     }
