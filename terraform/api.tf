@@ -36,3 +36,9 @@ resource "aws_route53_record" "coffee-api" {
 
 	}
 }
+
+resource "aws_api_gateway_base_path_mapping" "coffee" {
+  api_id      = "${aws_api_gateway_rest_api.coffee.id}"
+  stage_name  = "${aws_api_gateway_deployment.coffee_deployment.stage_name}"
+  domain_name = "${aws_api_gateway_domain_name.coffee.domain_name}"
+}
