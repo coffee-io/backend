@@ -11,7 +11,7 @@ resource "aws_api_gateway_method" "hello_get" {
 }
 
 resource "aws_api_gateway_integration" "integration" {
-  rest_api_id             = "${aws_api_gateway_rest_api.coffe.id}"
+  rest_api_id             = "${aws_api_gateway_rest_api.coffee.id}"
   resource_id             = "${aws_api_gateway_resource.hello.id}"
   http_method             = "${aws_api_gateway_method.hello_get.http_method}"
   integration_http_method = "POST"
