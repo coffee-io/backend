@@ -1,37 +1,6 @@
 variable "rest_api_name"   {}
 variable "name"            {}
-variable "lambda_role_arn" {}
-variable "runtime"         { default = "go1.x" } 
-variable "memory_size"     { default = 128 }
-
-# 
-# lambda
-#
-
-resource "aws_lambda_function" "resource" {
-  function_name    = "${var.name}"
-  role             = "${var.lambda_role_arn}"
-	handler          = "${var.name}"
-  runtime          = "${var.runtime}"
-	memory_size			 = "${var.memory_size}"
-	s3_bucket        = "coffee-artifacts"
-	s3_key           = "${var.name}.zip"
-}
-
-resource "null_resource" "update_lambda" {
-	depends_on = ["aws_lambda_function.resource"]
-	provisioner "local-exec" {
-		command = "aws lambda update-function-code --function-name ${var.name} --s3-bucket coffee-artifacts --s3-key ${var.name}.zip --publish"
-	}
-	triggers {
-		build_number = "${timestamp()}" 
-	}
-}
-
-resource "aws_cloudwatch_log_group" "resource" {
-  name              = "/aws/lambda/${aws_lambda_function.resource.function_name}"
-  retention_in_days = 7
-}
+variable "lambda_arn"      {}
 
 #
 # api resource
@@ -52,7 +21,7 @@ data "aws_caller_identity" "current" {}
 resource "aws_lambda_permission" "resource_apigw_lambda" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.resource.arn}"
+  function_name = "${var.lambda_arn}"
   principal     = "apigateway.amazonaws.com"
 
   # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
@@ -84,7 +53,7 @@ resource "aws_api_gateway_integration" "integration" {
   http_method             = "${aws_api_gateway_method.method.http_method}"
   type                    = "AWS_PROXY"
   integration_http_method = "POST"
-  uri                     = "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${aws_lambda_function.resource.arn}/invocations"
+  uri                     = "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${var.lambda_arn}/invocations"
 }
 
 resource "aws_api_gateway_method_response" "response_200" {

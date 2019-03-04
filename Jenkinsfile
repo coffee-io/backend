@@ -21,6 +21,16 @@ pipeline {
             }
         }
 
+        stage('Build and deploy reset.zip') {
+            steps {
+                sh """
+                    cd reset
+                    docker build -t reset .
+                    docker run --env AWS_ACCESS_KEY_ID=${env.AWS_ACCESS_KEY_ID} --env AWS_SECRET_ACCESS_KEY=${env.AWS_SECRET_ACCESS_KEY} --env AWS_REGION=${env.AWS_DEFAULT_REGION} reset
+                """
+            }
+        }
+
         stage('Build and deploy hello.zip') {
             steps {
                 sh """

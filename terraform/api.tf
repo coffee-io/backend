@@ -4,13 +4,21 @@ resource "aws_api_gateway_rest_api" "coffee" {
   name        = "coffee"
 }
 
+# lambdas
+
+module "lambda_hello" {
+	source          = "./lambda"
+	name            = "hello"
+	lambda_role_arn = "${aws_iam_role.iam_for_lambda.arn}"
+}
+
 # resources
 
 module "resource" {
 	source          = "./resource"
 	rest_api_name   = "${aws_api_gateway_rest_api.coffee.name}"
 	name            = "hello"
-	lambda_role_arn = "${aws_iam_role.iam_for_lambda.arn}"
+	lambda_arn      = "${module.lambda_hello.lambda_arn}"
 }
 
 # deployment
