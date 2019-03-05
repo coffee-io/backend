@@ -34,6 +34,19 @@ resource "aws_iam_policy" "lambda_logging" {
       ],
       "Resource": "arn:aws:logs:*:*:*",
       "Effect": "Allow"
+    },
+    {
+      "Action": [
+				"dynamodb:BatchGetItem",
+				"dynamodb:GetItem",
+				"dynamodb:Query",
+				"dynamodb:Scan",
+				"dynamodb:BatchWriteItem",
+				"dynamodb:PutItem",
+				"dynamodb:UpdateItem"
+      ],
+      "Resource": "arn:aws:dynamodb:*:*:*",
+      "Effect": "Allow"
     }
   ]
 }
@@ -44,5 +57,3 @@ resource "aws_iam_role_policy_attachment" "lambda_logs" {
   role = "${aws_iam_role.iam_for_lambda.name}"
   policy_arn = "${aws_iam_policy.lambda_logging.arn}"
 }
-
-
