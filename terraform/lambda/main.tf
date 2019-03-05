@@ -11,7 +11,7 @@ variable "retention"       { default = 7 }
 resource "aws_lambda_function" "lambda" {
   function_name    = "${var.name}"
   role             = "${var.lambda_role_arn}"
-	handler          = "${var.name}"
+	handler          = "${var.name}.main_handler"
   runtime          = "${var.runtime}"
 	memory_size			 = "${var.memory_size}"
 	s3_bucket        = "coffee-artifacts"
