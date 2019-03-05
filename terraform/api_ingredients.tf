@@ -73,6 +73,7 @@ resource "aws_api_gateway_integration_response" "ingr_integration_response" {
         "cost": $elem.M.cost.N
     }#if($foreach.hasNext),#end
 #end
+
 ]
 EOF
 	depends_on = ["aws_api_gateway_integration.ingr_integration"]
