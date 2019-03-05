@@ -54,6 +54,7 @@ resource "aws_api_gateway_method_response" "ingr_response_200" {
 	}
 }
 
+/*
 resource "aws_api_gateway_integration_response" "ingr_integration_response" {
   rest_api_id = "${aws_api_gateway_rest_api.coffee.id}"
   resource_id = "${module.ingredients_resource.resource_id}"
@@ -78,3 +79,4 @@ resource "aws_api_gateway_integration_response" "ingr_integration_response" {
 EOF
 	depends_on = ["aws_api_gateway_integration.ingr_integration"]
 }
+*/
