@@ -10,7 +10,6 @@ module "lambda_hello" {
 	source          = "./lambda"
 	name            = "hello"
 	lambda_role_arn = "${aws_iam_role.iam_for_lambda.arn}"
-	runtime         = "python3.7"
 }
 
 # resources

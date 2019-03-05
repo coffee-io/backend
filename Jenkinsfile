@@ -15,24 +15,6 @@ pipeline {
 
     stages {
 
-        stage('Build base go image') {
-            steps {
-                sh 'docker build -t gobuild-lambda .'
-            }
-        }
-
-        /*
-        stage('Build and deploy reset.zip') {
-            steps {
-                sh """
-                    cd reset
-                    docker build -t reset .
-                    docker run --env AWS_ACCESS_KEY_ID=${env.AWS_ACCESS_KEY_ID} --env AWS_SECRET_ACCESS_KEY=${env.AWS_SECRET_ACCESS_KEY} --env AWS_REGION=${env.AWS_DEFAULT_REGION} reset
-                """
-            }
-        }
-        */
-
         stage('Deploy infrastructure') {
             steps {
                 sh """
@@ -45,7 +27,10 @@ pipeline {
 
         stage('Build and deploy lambdas') {
             steps {
-                sh './publish_lambda.sh hello'
+                sh """
+                    ./publish_lambda.sh hello
+                    ./publish_lambda.sh reset
+                """
             }
         }
 

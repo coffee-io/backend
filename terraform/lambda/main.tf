@@ -1,6 +1,6 @@
 variable "name"            {}
 variable "lambda_role_arn" {}
-variable "runtime"         { default = "go1.x" } 
+variable "runtime"         { default = "python3.7" } 
 variable "memory_size"     { default = 128 }
 variable "retention"       { default = 7 }
 
