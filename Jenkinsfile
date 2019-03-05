@@ -30,6 +30,7 @@ pipeline {
                 sh """
                     ./publish_lambda.sh hello
                     ./publish_lambda.sh reset
+                    ./publish_lambda.sh ingredients
                 """
             }
         }
