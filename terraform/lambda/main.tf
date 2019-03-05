@@ -18,6 +18,7 @@ resource "aws_lambda_function" "lambda" {
 	s3_key           = "${var.name}.zip"
 }
 
+/*
 resource "null_resource" "update_lambda" {
 	depends_on = ["aws_lambda_function.lambda"]
 	provisioner "local-exec" {
@@ -27,6 +28,7 @@ resource "null_resource" "update_lambda" {
 		build_number = "${timestamp()}" 
 	}
 }
+*/
 
 resource "aws_cloudwatch_log_group" "lambda" {
   name              = "/aws/lambda/${aws_lambda_function.lambda.function_name}"

@@ -7,6 +7,7 @@ def update_ingredients(config):
         'configKey': 'ingredients',
         'configValue': [
             { 'name':'Espresso', 'type':'liquid', 'color':'#141210', 'cost':Decimal(4.0) },
+            { 'name':'Brewed', 'type':'liquid', 'color':'#242220', 'cost':Decimal(3.0) },
         ]
     })
     print('Ingredients updated.')
