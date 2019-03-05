@@ -33,12 +33,6 @@ pipeline {
         }
         */
 
-        stage('Build and deploy lambdas') {
-            steps {
-                sh './publish_lambda.sh hello'
-            }
-        }
-
         stage('Deploy infrastructure') {
             steps {
                 sh """
@@ -46,6 +40,12 @@ pipeline {
                     terraform init -no-color -input=false 
                     terraform apply -no-color -input=false -auto-approve -lock=false
                 """
+            }
+        }
+
+        stage('Build and deploy lambdas') {
+            steps {
+                sh './publish_lambda.sh hello'
             }
         }
 
