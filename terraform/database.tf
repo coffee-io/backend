@@ -4,7 +4,7 @@ resource "aws_dynamodb_table" "coffee_data" {
 	hash_key      = "key"
 
 	attribute {
-		name = "Key"
+		name = "key"
 		type = "S"
 	}
 }
