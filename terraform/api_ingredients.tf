@@ -15,13 +15,30 @@ resource "aws_api_gateway_method" "method" {
 	authorization = "NONE"
 }
 
-/*
 resource "aws_api_gateway_integration" "integration" {
   rest_api_id             = "${aws_api_gateway_rest_api.coffee.id}"
   resource_id             = "${module.ingredients_resource.resource_id}"
   http_method             = "${aws_api_gateway_method.method.http_method}"
-  type                    = "AWS_PROXY"
+  type                    = "AWS"
   integration_http_method = "POST"
-  uri                     = "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${var.lambda_arn}/invocations"
+  uri                     = "arn:aws:apigateway:us-east-1:dynamodb:action/Query"
+	credentials							= "${aws_iam_role.iam_for_dynamo.arn}"
+	passthrough_behavior    = "WHEN_NO_TEMPLATES"
+
+  request_templates = {
+    "application/json" = <<EOF
+{
+    "TableName": "CoffeeConfig",
+    "PrimaryKey": "key",
+    "KeyConditionExpression": "configKey = :k",
+    "ExpressionAttributeValues": {
+        ":k": {
+            "S": "ingredients"
+        }
+    }
 }
-*/
+EOF
+  }
+}
+
+
