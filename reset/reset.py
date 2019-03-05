@@ -4,8 +4,8 @@ from decimal import *
 
 def update_ingredients(config):
     response = config.put_item(Item={
-        'key': 'ingredients',
-        'ingredients': [
+        'configKey': 'ingredients',
+        'configValue': [
             { 'name':'Espresso', 'type':'liquid', 'color':'#141210', 'cost':Decimal(4.0) },
         ]
     })
