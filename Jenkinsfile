@@ -15,6 +15,16 @@ pipeline {
 
     stages {
 
+        stage('Upload lambdas code') {
+            steps {
+                sh """
+                    ./publish_lambda.sh hello
+                    ./publish_lambda.sh reset
+                    ./publish_lambda.sh ingredients
+                """
+            }
+        }
+
         stage('Deploy infrastructure') {
             steps {
                 sh """
@@ -25,12 +35,12 @@ pipeline {
             }
         }
 
-        stage('Build and deploy lambdas') {
+        stage('Deploy lambdas') {
             steps {
                 sh """
-                    ./publish_lambda.sh hello
-                    ./publish_lambda.sh reset
-                    ./publish_lambda.sh ingredients
+                    ./deploy_lambda.sh hello
+                    ./deploy_lambda.sh reset
+                    ./deploy_lambda.sh ingredients
                 """
             }
         }
