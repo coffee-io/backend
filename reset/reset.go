@@ -31,10 +31,12 @@ func reset() (string, error) {
     }
 
     type ingredients struct {
+        Key             string       `json:"key"`
         Ingredient_list []ingredient `json:"ingredients"`
     }
 
     my_ingredients := ingredients{
+        Key: "ingredients",
         Ingredient_list: []ingredient{
             ingredient{ Name: "Espresso", Type: "liquid", Color: "#141210", Cost: 4.0 },
         },
