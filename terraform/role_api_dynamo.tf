@@ -18,12 +18,12 @@ resource "aws_iam_role" "iam_for_dynamo" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "api_dynamo" {
+resource "aws_iam_role_policy_attachment" "api_dynamo_1" {
   role = "${aws_iam_role.iam_for_dynamo.name}"
 	policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess"
 }
 
-resource "aws_iam_role_policy_attachment" "api_dynamo" {
+resource "aws_iam_role_policy_attachment" "api_dynamo_2" {
   role = "${aws_iam_role.iam_for_dynamo.name}"
 	policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
 }
