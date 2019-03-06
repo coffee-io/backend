@@ -38,7 +38,7 @@ EOF
 #set($inputRoot = $input.path('$'))
 [
     #foreach($elem in $input.path('$.Items')){
-        "name": "$elem.M.recipeName.S"
+        "name": "$elem.recipeName.S"
     }#if($foreach.hasNext), #end
 #end
 
