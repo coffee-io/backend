@@ -31,7 +31,7 @@ def update_recipes(dynamodb):
         'recipeName':  'Espresso',
         'size':  'small',
         'ingredients': [
-            { 'name': 'Espresso', 'cost': Decimal(4.0), 'percentage': Decimal(1.0) },
+            { 'name': 'Espresso', 'percentage': Decimal(1.0), 'type':'coffee', 'color':'#000000', 'cost':Decimal(4.0) },
         ],
         'totalCost': Decimal(4.0),
     })
@@ -40,8 +40,8 @@ def update_recipes(dynamodb):
         'recipeName': 'Café con leche',
         'size': 'medium',
         'ingredients': [
-            { 'name': 'Brewed (string)', 'cost': Decimal(3.0), 'percentage': Decimal(0.5) },
-            { 'name': 'Milk', 'cost': Decimal(2.0), 'percentage': Decimal(0.5) },
+            { 'name': 'Brewed (string)', 'percentage': Decimal(0.5), 'type':'coffee', 'color':'#610B0B', 'cost':Decimal(3.0) },
+            { 'name': 'Milk', 'percentage': Decimal(0.5), 'type':'liquid', 'color':'#FAFAFA', 'cost':Decimal(2.0) },
         ],
         'totalCost': Decimal(5.0),
     })
