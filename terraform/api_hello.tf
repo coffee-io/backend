@@ -11,6 +11,7 @@ module "lambda_hello" {
 module "hello_resource" {
 	source          = "./resource"
 	rest_api_name   = "${aws_api_gateway_rest_api.coffee.name}"
+	parent_id       = "${aws_api_gateway_rest_api.coffee.root_resource_id}"
 	name            = "hello"
 }
 

@@ -1,5 +1,6 @@
 variable "rest_api_name"   {}
 variable "name"            {}
+variable "parent_id"       {}
 
 data "aws_api_gateway_rest_api" "api" {
 	name = "${var.rest_api_name}"
@@ -7,7 +8,7 @@ data "aws_api_gateway_rest_api" "api" {
 
 resource "aws_api_gateway_resource" "resource" {
   rest_api_id = "${data.aws_api_gateway_rest_api.api.id}"
-  parent_id   = "${data.aws_api_gateway_rest_api.api.root_resource_id}"
+  parent_id   = "${var.parent_id}"
   path_part   = "${var.name}"
 }
 
