@@ -37,18 +37,19 @@ EOF
   response_template = <<EOF
 #set($inputRoot = $input.path('$'))
 [
-    #foreach($elem in $input.path('$.Items'))"$elem.recipeName.S" : {
+    #foreach($elem in $input.path('$.Items')){
+        "recipeName": "$elem.recipeName.S",
         "size": "$elem.size.S",
         "totalCost": $elem.totalCost.N,
         "ingredients": [
-            #foreach($ing in $elem.ingredients.L)"$ing.M.name.S" : {,
-              "type": "$ing.M.type.S",
-              "cost": $ing.M.cost.N,
-              "color": "$ing.M.color.S",
-              "percentage": $ing.M.percentage.N
-            }#if($foreach.hasNext),
-#end
-#end
+            #foreach($ing in $elem.ingredients.L){
+            "name": "$ing.M.name.S",
+            "type": "$ing.M.type.S",
+            "cost": $ing.M.cost.N,
+            "color": "$ing.M.color.S",
+            "percentage": $ing.M.percentage.N
+            }#if($foreach.hasNext), #end
+        #end
 
         ]
     }#if($foreach.hasNext), #end
