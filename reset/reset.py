@@ -26,7 +26,7 @@ def update_ingredients(dynamodb):
 
 def update_recipes(dynamodb):
     recipes = dynamodb.Table('CoffeeRecipes')
-    response = recipes.put_item(Item={
+    recipes.put_item(Item={
         'userScope': 'global',
         'recipeName':  'Espresso',
         'size':  'small',
@@ -34,6 +34,16 @@ def update_recipes(dynamodb):
             { 'name': 'Espresso', 'cost': Decimal(4.0), 'percentage': Decimal(1.0) },
         ],
         'totalCost': Decimal(4.0),
+    })
+    recipes.put_item(Item={
+        'userScope': 'global',
+        'recipeName': 'Café con leche',
+        'size': 'medium',
+        'ingredients': [
+            { 'name': 'Brewed (string)', 'cost': Decimal(3.0), 'percentage': Decimal(0.5) },
+            { 'name': 'Milk', 'cost': Decimal(2.0), 'percentage': Decimal(0.5) },
+        ],
+        'totalCost': Decimal(5.0),
     })
     print('Recipes updated.')
 
