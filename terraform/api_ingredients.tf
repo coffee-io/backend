@@ -29,7 +29,7 @@ EOF
 	response_template = <<EOF
 #set($inputRoot = $input.path('$'))
 [
-    #foreach($elem in $input.path('$.Items[0].configValue.L')) {
+    #foreach($elem in $input.path('$.Items[0].configValue.L')){
         "name": "$elem.M.name.S",
         "type": "$elem.M.type.S",
         "color": "$elem.M.color.S",
