@@ -34,7 +34,7 @@ EOF
         "type": "$elem.M.type.S",
         "color": "$elem.M.color.S",
         "cost": $elem.M.cost.N
-    }#if($foreach.hasNext),#end
+    }#if($foreach.hasNext), #end
 #end
 
 ]
