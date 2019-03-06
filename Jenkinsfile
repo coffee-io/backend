@@ -29,6 +29,7 @@ pipeline {
                 sh """
                     cd terraform
                     terraform init -no-color -input=false 
+                    terraform taint aws_api_gateway_base_path_mapping.coffee
                     terraform apply -no-color -input=false -auto-approve -lock=false
                 """
             }
