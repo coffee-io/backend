@@ -25,4 +25,3 @@ resource "aws_lambda_permission" "event_reset" {
 
   source_arn = "${aws_cloudwatch_event_rule.reset.arn}"
 }
-
