@@ -38,9 +38,20 @@ EOF
 #set($inputRoot = $input.path('$'))
 [
     #foreach($elem in $input.path('$.Items')){
-        "name": "$elem.recipeName.S",
+        "recipeName": "$elem.recipeName.S",
         "size": "$elem.size.S",
-        "cost": "$elem.cost.N",
+        "totalCost": $elem.totalCost.N,
+				"ingredients": [
+					  #foreach($ing in $elem.ingredients.L){
+						"name": "$ing.name.S",
+						"type": "$ing.type.S",
+						"cost": $ing.cost.N,
+						"color": "$ing.color.S",
+						"percentage": $ing.percentage.N
+						}#if($foreach.hasNext), #end
+				#end
+
+				]
     }#if($foreach.hasNext), #end
 #end
 
