@@ -17,9 +17,9 @@ module "hello_resource" {
 # methods
 
 module "hello_method_get" {
-	source					= "./method"
+	source					= "./api_method_lambda"
 	rest_api_name   = "${aws_api_gateway_rest_api.coffee.name}"
 	resource_id     = "${module.hello_resource.resource_id}"
-	method          = "GET"
+	http_method     = "GET"
 	lambda_arn      = "${module.lambda_hello.lambda_arn}"
 }

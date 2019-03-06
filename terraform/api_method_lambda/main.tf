@@ -1,6 +1,6 @@
 variable "rest_api_name"   {}
 variable "resource_id"     {}
-variable "method"          {}
+variable "http_method"     {}
 variable "lambda_arn"      {}
 
 data "aws_api_gateway_rest_api" "api" {
@@ -10,7 +10,7 @@ data "aws_api_gateway_rest_api" "api" {
 resource "aws_api_gateway_method" "method" {
   rest_api_id   = "${data.aws_api_gateway_rest_api.api.id}"
   resource_id   = "${var.resource_id}"
-  http_method   = "${var.method}"
+  http_method   = "${var.http_method}"
 	authorization = "NONE"
 }
 
