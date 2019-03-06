@@ -12,16 +12,16 @@ resource "aws_dynamodb_table" "coffee_data" {
 resource "aws_dynamodb_table" "recipes" {
 	name					= "CoffeeRecipes"
 	billing_mode	= "PAY_PER_REQUEST"
-	hash_key      = "scope"
-	range_key     = "name"
+	hash_key      = "userScope"
+	range_key     = "recipeName"
 
 	attribute {
-		name = "scope"
+		name = "userScope"
 		type = "S"
 	}
 
 	attribute {
-		name = "name"
+		name = "recipeName"
 		type = "S"
 	}
 }
