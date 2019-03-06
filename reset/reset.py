@@ -2,7 +2,8 @@ import boto3
 import json
 from decimal import *
 
-def update_ingredients(config):
+def update_ingredients(dynamodb):
+    config = dynamodb.Table('CoffeeConfig')
     response = config.put_item(Item={
         'configKey': 'ingredients',
         'configValue': [
@@ -23,9 +24,9 @@ def update_ingredients(config):
     })
     print('Ingredients updated.')
 
-def update_recipes(config):
+def update_recipes(dynamodb):
     recipes = dynamodb.Table('CoffeeRecipes')
-    response = config.put_item(Item={
+    response = recipes.put_item(Item={
         'name':  'Espresso',
         'scope': 'global',
         'size':  'small',
@@ -38,11 +39,10 @@ def update_recipes(config):
 
 def main_handler(event, context):
     dynamodb = boto3.resource('dynamodb')
-    config = dynamodb.Table('CoffeeConfig')
     print('Connected to AWS service')
 
-    update_ingredients(config)
-    update_recipes(config)
+    update_ingredients(dynamodb)
+    update_recipes(dynamodb)
 
     return {
         'statusCode': 200,
