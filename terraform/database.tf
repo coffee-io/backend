@@ -8,3 +8,20 @@ resource "aws_dynamodb_table" "coffee_data" {
 		type = "S"
 	}
 }
+
+resource "aws_dynamodb_table" "recipes" {
+	name					= "CoffeeRecipes"
+	billing_mode	= "PAY_PER_REQUEST"
+	hash_key      = "name"
+	range_key     = "scope"
+
+	attribute {
+		name = "name"
+		type = "S"
+	}
+
+	attribute {
+		name = "scope"
+		type = "S"
+	}
+}

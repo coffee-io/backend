@@ -12,7 +12,7 @@ def update_ingredients(config):
             { 'name':'Water',           'type':'liquid', 'color':'#0080FF', 'cost':Decimal(0.0) },
             { 'name':'Cream',           'type':'liquid', 'color':'#F5F6CE', 'cost':Decimal(4.0) },
             { 'name':'Milk',            'type':'liquid', 'color':'#FAFAFA', 'cost':Decimal(2.0) },
-            { 'name':'Whipped milk',    'type':'liquid', 'color':'#F2F2F2', 'cost':Decimal(3.0) },
+            { 'name':'Whipped milk',    'type':'liquid', 'color':'#F2F2F2', 'cost':Decimal(3.5) },
             { 'name':'Chocolate',       'type':'liquid', 'color':'#8A4B08', 'cost':Decimal(5.0) },
             { 'name':'Whisky',          'type':'liquid', 'color':'#FFBF00', 'cost':Decimal(12.0) },
             { 'name':'Sugar',           'type':'added',  'color':'#FAFAFA', 'cost':Decimal(0.0) },
@@ -23,12 +23,26 @@ def update_ingredients(config):
     })
     print('Ingredients updated.')
 
+def update_recipes(config):
+    recipes = dynamodb.Table('CoffeeRecipes')
+    response = config.put_item(Item={
+        'name':  'Espresso',
+        'scope': 'global',
+        'size':  'small',
+        'ingredients': [
+            { 'name': 'Espresso', 'percentage': Decimal(1.0) },
+        ],
+        'cost': Decimal(4.0),
+    })
+    print('Recipes updated.')
+
 def main_handler(event, context):
     dynamodb = boto3.resource('dynamodb')
     config = dynamodb.Table('CoffeeConfig')
     print('Connected to AWS service')
 
     update_ingredients(config)
+    update_recipes(config)
 
     return {
         'statusCode': 200,
