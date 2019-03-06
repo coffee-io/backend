@@ -22,7 +22,7 @@ resource "aws_api_gateway_deployment" "coffee_deployment" {
 resource "null_resource" "redeploy_api" {
 	depends_on = ["aws_api_gateway_deployment.coffee_deployment"]
 	provisioner "local-exec" {
-		command = "aws update-deployment --rest-api-id ${aws_api_gateway_rest_api.coffee.id} --deployment-id ${aws_api_gateway_deployment.coffee_deployment.id}"
+		command = "aws apigateway update-deployment --rest-api-id ${aws_api_gateway_rest_api.coffee.id} --deployment-id ${aws_api_gateway_deployment.coffee_deployment.id}"
 	}
 	triggers {
 		build_number = "${timestamp()}" 
