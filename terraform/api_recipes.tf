@@ -37,8 +37,7 @@ EOF
   response_template = <<EOF
 #set($inputRoot = $input.path('$'))
 [
-    #foreach($elem in $input.path('$.Items')){
-        "recipeName": "$elem.recipeName.S",
+    #foreach($elem in $input.path('$.Items'))"$elem.recipeName.S" : {
         "size": "$elem.size.S",
         "totalCost": $elem.totalCost.N,
         "ingredients": [
