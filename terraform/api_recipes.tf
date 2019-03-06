@@ -25,8 +25,8 @@ module "recipes_global_get" {
 	request_template  = <<EOF
 {
     "TableName": "CoffeeRecipes",
-    "PrimaryKey": "scope",
-    "KeyConditionExpression": "scope = :k",
+    "PrimaryKey": "userScope",
+    "KeyConditionExpression": "userScope = :k",
     "ExpressionAttributeValues": {
         ":k": {
             "S": "global"
