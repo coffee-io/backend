@@ -46,8 +46,9 @@ EOF
               "cost": $ing.M.cost.N,
               "color": "$ing.M.color.S",
               "percentage": $ing.M.percentage.N
-            }#if($foreach.hasNext), #end
-        #end
+            }#if($foreach.hasNext),
+#end
+#end
 
         ]
     }#if($foreach.hasNext), #end
