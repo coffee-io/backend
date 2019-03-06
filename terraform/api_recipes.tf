@@ -3,26 +3,26 @@
 module "recipes_resource" {
   source          = "./resource"
   rest_api_name   = "${aws_api_gateway_rest_api.coffee.name}"
-	parent_id       = "${aws_api_gateway_rest_api.coffee.root_resource_id}"
+  parent_id       = "${aws_api_gateway_rest_api.coffee.root_resource_id}"
   name            = "recipes"
 }
 
 module "recipes_global_resource" {
   source          = "./resource"
   rest_api_name   = "${aws_api_gateway_rest_api.coffee.name}"
-	parent_id       = "${module.recipes_resource.resource_id}"
+  parent_id       = "${module.recipes_resource.resource_id}"
   name            = "global"
 }
 
 # method
 
 module "recipes_global_get" {
-	source					  = "./api_method_dynamo"
+  source            = "./api_method_dynamo"
   rest_api_name     = "${aws_api_gateway_rest_api.coffee.name}"
   resource_id       = "${module.recipes_global_resource.resource_id}"
   http_method       = "GET"
-	role_arn          = "${aws_iam_role.iam_for_dynamo.arn}"
-	request_template  = <<EOF
+  role_arn          = "${aws_iam_role.iam_for_dynamo.arn}"
+  request_template  = <<EOF
 {
     "TableName": "CoffeeRecipes",
     "PrimaryKey": "userScope",
@@ -34,24 +34,24 @@ module "recipes_global_get" {
     }
 }
 EOF
-	response_template = <<EOF
+  response_template = <<EOF
 #set($inputRoot = $input.path('$'))
 [
     #foreach($elem in $input.path('$.Items')){
         "recipeName": "$elem.recipeName.S",
         "size": "$elem.size.S",
         "totalCost": $elem.totalCost.N,
-				"ingredients": [
-					  #foreach($ing in $elem.ingredients.L){
-						"name": "$ing.name.S",
-						"type": "$ing.type.S",
-						"cost": $ing.cost.N,
-						"color": "$ing.color.S",
-						"percentage": $ing.percentage.N
-						}#if($foreach.hasNext), #end
-				#end
+        "ingredients": [
+            #foreach($ing in $elem.ingredients.L){
+            "name": "$ing.M.name.S",
+            "type": "$ing.M.type.S",
+            "cost": $ing.M.cost.N,
+            "color": "$ing.M.color.S",
+            "percentage": $ing.M.percentage.N
+            }#if($foreach.hasNext), #end
+        #end
 
-				]
+        ]
     }#if($foreach.hasNext), #end
 #end
 
