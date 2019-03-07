@@ -44,6 +44,7 @@ EOF
         "ingredients": [
             #foreach($ing in $elem.ingredients.L){
             "name": "$ing.M.name.S",
+            "description": "$ing.M.description.S",
             "type": "$ing.M.type.S",
             "cost": $ing.M.cost.N,
             "color": "$ing.M.color.S",
