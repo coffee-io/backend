@@ -39,12 +39,12 @@ EOF
 [
     #foreach($elem in $input.path('$.Items')){
         "recipeName": "$elem.recipeName.S",
+        "description": "$elem.description.S",
         "size": "$elem.size.S",
         "totalCost": $elem.totalCost.N,
         "ingredients": [
             #foreach($ing in $elem.ingredients.L){
             "name": "$ing.M.name.S",
-            "description": "$ing.M.description.S",
             "type": "$ing.M.type.S",
             "cost": $ing.M.cost.N,
             "color": "$ing.M.color.S",
