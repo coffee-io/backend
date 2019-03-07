@@ -29,6 +29,7 @@ def update_recipes(dynamodb):
     recipes.put_item(Item={
         'userScope': 'global',
         'recipeName':  'Espresso',
+        'description': 'A creamy, strong coffee prepared under ideal conditions of temperature and pressure.',
         'size':  'small',
         'ingredients': [
             { 'name': 'Espresso', 'percentage': Decimal(1.0), 'type':'coffee', 'color':'#000000', 'cost':Decimal(4.0) },
@@ -38,6 +39,7 @@ def update_recipes(dynamodb):
     recipes.put_item(Item={
         'userScope': 'global',
         'recipeName': 'Café con leche',
+        'description': 'The perfect way to start your morning.',
         'size': 'medium',
         'ingredients': [
             { 'name': 'Brewed (string)', 'percentage': Decimal(0.5), 'type':'coffee', 'color':'#610B0B', 'cost':Decimal(3.0) },
