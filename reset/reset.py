@@ -29,7 +29,7 @@ def update_recipes(dynamodb):
     recipes.put_item(Item={
         'userScope': 'global',
         'recipeName':  'Espresso',
-        'description': 'A creamy, strong coffee prepared under ideal conditions of temperature and pressure.',
+        'description': 'A creamy, strong coffee prepared under ideal conditions.',
         'size':  'small',
         'ingredients': [
             { 'name': 'Espresso', 'percentage': Decimal(1.0), 'type':'coffee', 'color':'#000000', 'cost':Decimal(4.0) },
