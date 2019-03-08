@@ -36,6 +36,8 @@ EOF
         "color": "$elem.M.color.S",
 #if($elem.M.lightColor.BOOL == true)        "lightColor": true,
 #end
+#if("$elem.M.unit.S" != "")        "unit": "$elem.M.unit.S",
+#end
         "cost": $elem.M.cost.N
     }#if($foreach.hasNext), #end
 #end
