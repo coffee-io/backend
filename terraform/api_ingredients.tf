@@ -34,7 +34,8 @@ EOF
         "name": "$elem.M.name.S",
         "type": "$elem.M.type.S",
         "color": "$elem.M.color.S",
-        "cost": $elem.M.cost.N
+        "cost": $elem.M.cost.N,
+        "lightColor": $elem.M.lightColor.BOOL
     }#if($foreach.hasNext), #end
 #end
 

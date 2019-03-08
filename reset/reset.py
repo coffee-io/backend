@@ -1,10 +1,10 @@
 import boto3
 import json
-from decimal import *
+from decimal import Decimal
 
 def update_ingredients(dynamodb):
     config = dynamodb.Table('CoffeeConfig')
-    response = config.put_item(Item={
+    config.put_item(Item={
         'configKey': 'ingredients',
         'configValue': [
             { 'name':'Espresso',        'type':'coffee', 'color':'#000000', 'cost':Decimal(4.0) },
