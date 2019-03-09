@@ -7,19 +7,19 @@ def update_ingredients(dynamodb):
     config.put_item(Item={
         'configKey': 'ingredients',
         'configValue': [
-            { 'name':'Espresso',        'type':'Coffees', 'color':'#000000', 'cost':Decimal(4.0) },
-            { 'name':'Brewed (strong)', 'type':'Coffees', 'color':'#610B0B', 'cost':Decimal(3.0) },
-            { 'name':'Brewed (weak)',   'type':'Coffees', 'color':'#8A4B08', 'cost':Decimal(3.0) },
-            { 'name':'Cream',           'type':'Dairy', 'color':'#F5F6CE', 'cost':Decimal(4.0), 'lightColor': True },
-            { 'name':'Milk',            'type':'Dairy', 'color':'#FAFAFA', 'cost':Decimal(2.0), 'lightColor': True },
-            { 'name':'Whipped milk',    'type':'Dairy', 'color':'#F2F2F2', 'cost':Decimal(3.5), 'lightColor': True },
-            { 'name':'Water',           'type':'Liquid', 'color':'#0080FF', 'cost':Decimal(0.0) },
-            { 'name':'Chocolate',       'type':'Liquid', 'color':'#8A4B08', 'cost':Decimal(5.0) },
-            { 'name':'Whisky',          'type':'Liquid', 'color':'#FFBF00', 'cost':Decimal(12.0) },
-            { 'name':'Sugar',           'type':'Additional',  'color':'#FAFAFA', 'cost':Decimal(0.0), 'unit': 'teaspoons' },
-            { 'name':'Cinnamon',        'type':'Additional',  'color':'#5F4C0B', 'cost':Decimal(0.0), 'unit': 'pinches' },
-            { 'name':'Nutmeg',          'type':'Additional',  'color':'#DBA901', 'cost':Decimal(0.0), 'unit': 'pinches' },
-            { 'name':'Sucralose',       'type':'Additional',  'color':'#E0E6F8', 'cost':Decimal(0.0), 'unit': 'teaspoons' },
+            { 'name':'Espresso',        'type':'Coffees',    'color':'#000000', 'cost':Decimal(4.0) },
+            { 'name':'Brewed (strong)', 'type':'Coffees',    'color':'#610B0B', 'cost':Decimal(3.0) },
+            { 'name':'Brewed (weak)',   'type':'Coffees',    'color':'#8A4B08', 'cost':Decimal(3.0) },
+            { 'name':'Cream',           'type':'Dairy',      'color':'#F5F6CE', 'cost':Decimal(4.0), 'lightColor': True },
+            { 'name':'Milk',            'type':'Dairy',      'color':'#FAFAFA', 'cost':Decimal(2.0), 'lightColor': True },
+            { 'name':'Whipped milk',    'type':'Dairy',      'color':'#F2F2F2', 'cost':Decimal(3.5), 'lightColor': True },
+            { 'name':'Water',           'type':'Liquids',    'color':'#0080FF', 'cost':Decimal(0.0) },
+            { 'name':'Chocolate',       'type':'Liquids',    'color':'#8A4B08', 'cost':Decimal(5.0) },
+            { 'name':'Whisky',          'type':'Liquids',    'color':'#FFBF00', 'cost':Decimal(12.0) },
+            { 'name':'Sugar',           'type':'Additional', 'color':'#FAFAFA', 'cost':Decimal(0.0), 'unit': 'teaspoons' },
+            { 'name':'Cinnamon',        'type':'Additional', 'color':'#5F4C0B', 'cost':Decimal(0.0), 'unit': 'pinches' },
+            { 'name':'Nutmeg',          'type':'Additional', 'color':'#DBA901', 'cost':Decimal(0.0), 'unit': 'pinches' },
+            { 'name':'Sucralose',       'type':'Additional', 'color':'#E0E6F8', 'cost':Decimal(0.0), 'unit': 'teaspoons' },
         ]
     })
     print('Ingredients updated.')
