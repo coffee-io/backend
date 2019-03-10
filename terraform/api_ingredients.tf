@@ -38,8 +38,6 @@ EOF
 #end
 #if("$elem.M.unit.S" != "")        "unit": "$elem.M.unit.S",
 #end
-#if("$elem.M.qtd.N" != "")        "qtd": "$elem.M.qtd.N",
-#end
         "cost": $elem.M.cost.N
     }#if($foreach.hasNext), #end
 #end
