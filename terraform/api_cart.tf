@@ -27,7 +27,7 @@ module "cart_calculator_resource" {
 module "cart_calulator_get" {
 	source					= "./api_method_lambda"
 	rest_api_name   = "${aws_api_gateway_rest_api.coffee.name}"
-	resource_id     = "${module.cart_calculator.resource_id}"
+	resource_id     = "${module.cart_calculator_resource.resource_id}"
 	http_method     = "GET"
 	lambda_arn      = "${module.lambda_recalculate.lambda_arn}"
 }

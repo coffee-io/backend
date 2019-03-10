@@ -20,6 +20,7 @@ pipeline {
                 sh """
                     ./publish_lambda.sh hello
                     ./publish_lambda.sh reset
+                    ./publish_lambda.sh recalculate
                 """
             }
         }
@@ -40,6 +41,7 @@ pipeline {
                 sh """
                     ./deploy_lambda.sh hello
                     ./deploy_lambda.sh reset
+                    ./deploy_lambda.sh recalculate
                 """
             }
         }
