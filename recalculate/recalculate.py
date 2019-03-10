@@ -48,21 +48,19 @@ def recalculate_values(cart, ingredients):
     cart['total'] = total
 
 def main_handler(cart, context):
-    #try:
-    ingredients = get_ingredients()
-    check_cart_integrity(cart)
-    recalculate_values(cart, ingredients)
-    return {
-        'statusCode': 200,
-        'body': json.dumps(cart, cls=DecimalEncoder, ensure_ascii=False)
-    }
-    '''
+    try:
+        ingredients = get_ingredients()
+        check_cart_integrity(cart)
+        recalculate_values(cart, ingredients)
+        return {
+            'statusCode': 200,
+            'body': json.dumps(cart, cls=DecimalEncoder, ensure_ascii=False)
+        }
     except Exception as e:
         return {
             'statusCode': 400,
             'body': str(e)
         }
-    '''
 
 if __name__ == '__main__':
     cart = {}
