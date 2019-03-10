@@ -68,6 +68,6 @@ if __name__ == '__main__':
     cart = {}
     with open("test.json") as json_file:
         data = json.load(json_file, parse_float = decimal.Decimal)
-    print(main_handler(data, None))
+    print(main_handler({ 'body': json.dumps(data, cls=DecimalEncoder, ensure_ascii=False) }, None))
 
 # vim:st=4:sts=4:sw=4:expandtab
