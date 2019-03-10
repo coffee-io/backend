@@ -48,7 +48,9 @@ def recalculate_values(cart, ingredients):
         total += item['totalCost']
     cart['total'] = total
 
-def main_handler(cart, context):
+def main_handler(event, context):
+    cart = event.body
+    print(cart)
     try:
         ingredients = get_ingredients()
         check_cart_integrity(cart)
