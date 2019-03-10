@@ -49,8 +49,8 @@ def recalculate_values(cart, ingredients):
     cart['total'] = total
 
 def main_handler(event, context):
-    cart = json.loads(event['body'])
     try:
+        cart = json.loads(event['body'])
         ingredients = get_ingredients()
         check_cart_integrity(cart)
         recalculate_values(cart, ingredients)
