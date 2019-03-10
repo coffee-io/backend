@@ -50,11 +50,13 @@ EOF
                 "color": "$ing.M.color.S",
                 "qtd": $ing.M.qtd.N,
                 "percentage": $ing.M.percentage.N
-            }#if($foreach.hasNext), #end
+            }#if($foreach.hasNext),
+#end
         #end
 
         ]
-    }#if($foreach.hasNext), #end
+    }#if($foreach.hasNext),
+#end
 #end
 
 ]
