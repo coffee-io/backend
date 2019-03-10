@@ -50,7 +50,7 @@ def recalculate_values(cart, ingredients):
 
 def main_handler(event, context):
     cart = json.loads(event['body'])
-    return { 'statusCode': 200, 'event': json.dumps(cart, cls=DecimalEncoder, ensure_ascii=False) }
+    return { 'statusCode': 200, 'event': '"hello"' }#json.dumps(cart, cls=DecimalEncoder, ensure_ascii=False) }
     try:
         ingredients = get_ingredients()
         check_cart_integrity(cart)
