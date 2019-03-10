@@ -49,8 +49,8 @@ def recalculate_values(cart, ingredients):
     cart['total'] = total
 
 def main_handler(event, context):
-    cart = event.body
     return { 'statusCode': 400, 'event': event }
+    cart = event.body
     try:
         ingredients = get_ingredients()
         check_cart_integrity(cart)
