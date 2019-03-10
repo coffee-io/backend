@@ -16,10 +16,6 @@ def update_ingredients(dynamodb):
             { 'name':'Water',           'type':'Liquids',    'color':'#20A0FF', 'cost':Decimal(0.0), 'lightColor': True },
             { 'name':'Chocolate',       'type':'Liquids',    'color':'#8A4B08', 'cost':Decimal(5.0) },
             { 'name':'Whisky',          'type':'Liquids',    'color':'#FFBF00', 'cost':Decimal(12.0), 'lightColor': True },
-            { 'name':'Sugar',           'type':'Additional', 'color':'#FAFAFA', 'cost':Decimal(0.0), 'lightColor': True, 'unit': 'teaspoons' },
-            { 'name':'Cinnamon',        'type':'Additional', 'color':'#5F4C0B', 'cost':Decimal(0.0), 'unit': 'pinches' },
-            { 'name':'Nutmeg',          'type':'Additional', 'color':'#DBA901', 'cost':Decimal(0.0), 'lightColor': True, 'unit': 'pinches' },
-            { 'name':'Sucralose',       'type':'Diet', 'color':'#E0E6F8', 'cost':Decimal(0.0), 'lightColor': True, 'unit': 'teaspoons' },
         ]
     })
     print('Ingredients updated.')
@@ -32,7 +28,7 @@ def update_recipes(dynamodb):
         'description': 'A creamy, strong coffee prepared under ideal conditions.',
         'size':  'small',
         'ingredients': [
-            { 'name': 'Espresso', 'percentage': Decimal(1.0), 'type':'coffee', 'color':'#000000', 'cost':Decimal(4.0) },
+            { 'name': 'Espresso', 'percentage': Decimal(1.0), 'type':'coffee', 'color':'#000000', 'cost':Decimal(4.0), qtd: 4 },
         ],
         'totalCost': Decimal(4.0),
     })
@@ -42,8 +38,8 @@ def update_recipes(dynamodb):
         'description': 'The perfect way to start your morning.',
         'size': 'medium',
         'ingredients': [
-            { 'name': 'Brewed (string)', 'percentage': Decimal(0.5), 'type':'coffee', 'color':'#610B0B', 'cost':Decimal(3.0) },
-            { 'name': 'Milk', 'percentage': Decimal(0.5), 'type':'liquid', 'color':'#FAFAFA', 'cost':Decimal(2.0) },
+            { 'name': 'Brewed (string)', 'percentage': Decimal(0.5), 'type':'coffee', 'color':'#610B0B', 'cost':Decimal(3.0), qtd: 2 },
+            { 'name': 'Milk', 'percentage': Decimal(0.5), 'type':'liquid', 'color':'#FAFAFA', 'cost':Decimal(2.0), qtd: 2 },
         ],
         'totalCost': Decimal(5.0),
     })
