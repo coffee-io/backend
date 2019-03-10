@@ -28,12 +28,12 @@ def get_ingredients():
     return r
 
 def check_cart_integrity(cart):
-    if not cart['items']:
+    if not 'items' in cart:
         raise Exception('"items" is missing.')
     if len(cart['items']) == 0:
         raise Exception('No items in cart.')
     for item in cart['items']:
-        if not item['ingredients']:
+        if not 'ingredients' in item:
             raise Exception('"ingredients" is missing.')
         if len(item['ingredients']) == 0:
             raise Exception('No ingredients in item.')
