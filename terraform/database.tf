@@ -25,3 +25,20 @@ resource "aws_dynamodb_table" "recipes" {
 		type = "S"
 	}
 }
+
+resource "aws_dynamodb_table" "orders" {
+	name          = "CoffeeOrders"
+	billing_mode	= "PAY_PER_REQUEST"
+	hash_key      = "userEmail"
+	range_key     = "orderDate"
+
+	attribute {
+		name = "userEmail"
+		type = "S"
+	}
+
+	attribute {
+		name = "orderDate"
+		type = "S"
+	}
+}
