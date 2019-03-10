@@ -50,7 +50,7 @@ def recalculate_values(cart, ingredients):
 
 def main_handler(event, context):
     cart = json.loads(event['body'])
-    return { 'statusCode': 200, 'event': json.dumps(4) }
+    return { 'statusCode': 200, 'body': json.dumps(4) }
     #return json.dumps({ 'statusCode': 200, 'event': cart }, cls=DecimalEncoder, ensure_ascii=False)
     try:
         ingredients = get_ingredients()
