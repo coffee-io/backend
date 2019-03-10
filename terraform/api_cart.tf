@@ -24,10 +24,10 @@ module "cart_calculator_resource" {
 
 # methods
 
-module "cart_calulator_get" {
+module "cart_calulator_put" {
 	source					= "./api_method_lambda"
 	rest_api_name   = "${aws_api_gateway_rest_api.coffee.name}"
 	resource_id     = "${module.cart_calculator_resource.resource_id}"
-	http_method     = "GET"
+	http_method     = "PUT"
 	lambda_arn      = "${module.lambda_recalculate.lambda_arn}"
 }
