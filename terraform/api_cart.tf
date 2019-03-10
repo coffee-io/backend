@@ -19,7 +19,7 @@ module "cart_calculator_resource" {
   source          = "./resource"
   rest_api_name   = "${aws_api_gateway_rest_api.coffee.name}"
   parent_id       = "${module.cart_resource.resource_id}"
-  name            = "global"
+  name            = "calculator"
 }
 
 # methods

@@ -54,7 +54,7 @@ def main_handler(cart, context):
         recalculate_values(cart, ingredients)
         return {
             'statusCode': 200,
-            'body': json.dumps(cart, cls=DecimalEncoder, ensure_ascii=False)
+            'body': cart #json.dumps(cart, cls=DecimalEncoder, ensure_ascii=False)
         }
     except Exception as e:
         return {
