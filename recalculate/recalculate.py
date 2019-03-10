@@ -1,6 +1,7 @@
 import boto3
 import decimal
 import math
+import traceback
 import json
 import sys
 from decimal import Decimal
@@ -59,7 +60,7 @@ def main_handler(cart, context):
     except Exception as e:
         return {
             'statusCode': 400,
-            'body': str(e)
+            'body': ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))
         }
 
 if __name__ == '__main__':
