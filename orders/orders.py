@@ -1,10 +1,13 @@
 import boto3
 import decimal
 import json
+import math
 import traceback
 import sys
 from botocore.vendored import requests
+from boto3.dynamodb.conditions import Key, Attr
 from datetime import datetime
+from decimal import Decimal
 
 class DecimalEncoder(json.JSONEncoder):
     def default(self, o):
@@ -61,15 +64,19 @@ def save_order(cart):
 def main_handler(event, context):
     print(event)
     try:
-        cart = json.loads(event['body'])
-        cart = verify_cart(cart_json)
+        cart = json.loads(event['body'], parse_float = decimal.Decimal)
         ingredients = get_ingredients()
         check_cart_integrity(cart)
         recalculate_values(cart, ingredients)
-        save_order(cart)
-        return {
-            'statusCode': 201, # created
-        }
+        if event['resource'] == '/cart' and event['httpMethod'] == 'POST':
+            save_order(cart)
+            return { 'statusCode': 201, } # created
+        elif event['resource'] == '/cart/calculator' and event['httpMethod'] == 'PUT':
+            return {
+                'statusCode': 200,
+                'body': json.dumps(cart, cls=DecimalEncoder, ensure_ascii=False)
+            }
+    
     except Exception as e:
         return {
             'statusCode': 400,
