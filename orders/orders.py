@@ -1,9 +1,9 @@
 import boto3
 import decimal
 import json
-import requests
 import traceback
 import sys
+from botocore.vendored import requests
 from datetime import datetime
 
 class DecimalEncoder(json.JSONEncoder):
