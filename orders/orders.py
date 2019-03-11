@@ -3,10 +3,10 @@ import json
 import traceback
 
 def verify_cart(cart):
-    pass  # TODO
+    pass  # TODO - go the verification service to check for values
 
 def save_order(cart):
-    pass  # TODO
+    pass  # TODO - save order on dynamodb
 
 def main_handler(cart, context):
     try:
@@ -14,7 +14,7 @@ def main_handler(cart, context):
         verify_cart(cart)
         save_order(cart)
         return {
-            'statusCode': 201,
+            'statusCode': 201, # created
         }
     except Exception as e:
         return {
