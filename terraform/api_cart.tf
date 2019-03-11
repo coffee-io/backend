@@ -1,15 +1,9 @@
 # lambda
 
-module "lambda_recalculate" {
-	source          = "./lambda"
-	name            = "recalculate"
-	lambda_role_arn = "${aws_iam_role.iam_for_lambda.arn}"
-}
-
 module "lambda_orders" {
-	source          = "./lambda"
-	name            = "orders"
-	lambda_role_arn = "${aws_iam_role.iam_for_lambda.arn}"
+  source          = "./lambda"
+  name            = "orders"
+  lambda_role_arn = "${aws_iam_role.iam_for_lambda.arn}"
 }
 
 # resource
@@ -31,17 +25,17 @@ module "cart_calculator_resource" {
 # methods
 
 module "cart_post" {
-	source					= "./api_method_lambda"
-	rest_api_name   = "${aws_api_gateway_rest_api.coffee.name}"
-	resource_id     = "${module.cart_resource.resource_id}"
-	http_method     = "POST"
-	lambda_arn      = "${module.lambda_orders.lambda_arn}"
+  source          = "./api_method_lambda"
+  rest_api_name   = "${aws_api_gateway_rest_api.coffee.name}"
+  resource_id     = "${module.cart_resource.resource_id}"
+  http_method     = "POST"
+  lambda_arn      = "${module.lambda_orders.lambda_arn}"
 }
 
 module "cart_calulator_put" {
-	source					= "./api_method_lambda"
-	rest_api_name   = "${aws_api_gateway_rest_api.coffee.name}"
-	resource_id     = "${module.cart_calculator_resource.resource_id}"
-	http_method     = "PUT"
-	lambda_arn      = "${module.lambda_recalculate.lambda_arn}"
+  source          = "./api_method_lambda"
+  rest_api_name   = "${aws_api_gateway_rest_api.coffee.name}"
+  resource_id     = "${module.cart_calculator_resource.resource_id}"
+  http_method     = "PUT"
+  lambda_arn      = "${module.lambda_orders.lambda_arn}"
 }
