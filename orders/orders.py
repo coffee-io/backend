@@ -59,6 +59,7 @@ def save_order(cart):
     })
 
 def main_handler(event, context):
+    print(event)
     try:
         cart = json.loads(event['body'])
         cart = verify_cart(cart_json)
