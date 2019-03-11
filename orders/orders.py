@@ -17,9 +17,7 @@ class DecimalEncoder(json.JSONEncoder):
 
 def verify_cart(cart_json):
     url = "https://coffee-api.gamesmith.co.uk/cart/calculator"
-    response = requests.put(url, data=cart_json)
-    print(response)
-    return json.loads(response)
+    return requests.put(url, data=cart_json).json()
 
 def save_order(cart):
     dynamodb = boto3.resource('dynamodb')
