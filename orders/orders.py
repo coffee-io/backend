@@ -64,6 +64,7 @@ def save_order(cart):
     })
 
 def send_email(cart):
+    client = boto3.client('ses')
     try:
         response = client.send_email(
             Source='andre.nho@gmail.com',
