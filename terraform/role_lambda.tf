@@ -53,9 +53,6 @@ resource "aws_iam_policy" "lambda_logging" {
         "ses:SendEmail",
         "ses:SendRawEmail"
       ],
-      "Principal": {
-        "Service": "lambda.amazonaws.com"
-      },
       "Resource": "arn:aws:ses:*:*:*",
       "Effect": "Allow"
     }
