@@ -5,6 +5,7 @@ import math
 import traceback
 import uuid
 import sys
+from botocore.exceptions import ClientError
 from botocore.vendored import requests
 from boto3.dynamodb.conditions import Key, Attr
 from datetime import datetime
@@ -61,6 +62,27 @@ def save_order(cart):
         },
         **cart
     })
+
+def send_email(cart):
+    try:
+        response = client.send_email(
+            Source='andre.nho@gmail.com',
+            Destination={
+                'ToAddresses': [ cart['deliveryAddress']['email'] ],
+            },
+            Message={
+                'Body': {
+                    'Text': {
+                        'Charset': 'UTF-8',
+                        'Text': text,
+                    },
+                },
+            },
+        )
+    except ClientError as e:
+        raise Exception(e.response['Error']['Message'])
+    else:
+        print('E-mail sent.')
 
 def main_handler(event, context):
     print(event)
