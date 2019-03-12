@@ -35,6 +35,18 @@ resource "aws_cloudwatch_log_group" "lambda" {
   retention_in_days = "${var.retention}"
 }
 
+data "aws_caller_identity" "current" {}
+
+resource "aws_lambda_permission" "resource_apigw_lambda" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = "${var.lambda_arn}"
+  principal     = "apigateway.amazonaws.com"
+
+  # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
+  source_arn = "arn:aws:execute-api:us-east-1:${data.aws_caller_identity.current.account_id}:*/*/*/*"
+}
+
 output "lambda_arn" {
 	value = "${aws_lambda_function.lambda.arn}"
 }
