@@ -73,10 +73,14 @@ def send_email(cart):
                 'ToAddresses': [ cart['deliveryAddress']['email'] ],
             },
             Message={
+                'Subject': {
+                    'Charset': 'UTF-8',
+                    'Data': 'Your cup of coffee is underway!',
+                },
                 'Body': {
                     'Text': {
                         'Charset': 'UTF-8',
-                        'Text': text,
+                        'Data': text,
                     },
                 },
             },
