@@ -29,11 +29,11 @@ resource "aws_dynamodb_table" "recipes" {
 resource "aws_dynamodb_table" "orders" {
 	name          = "CoffeeOrders"
 	billing_mode	= "PAY_PER_REQUEST"
-	hash_key      = "userEmail"
+	hash_key      = "id"
 	range_key     = "orderDate"
 
 	attribute {
-		name = "userEmail"
+		name = "id"
 		type = "S"
 	}
 

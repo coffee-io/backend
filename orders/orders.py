@@ -3,6 +3,7 @@ import decimal
 import json
 import math
 import traceback
+import uuid
 import sys
 from botocore.vendored import requests
 from boto3.dynamodb.conditions import Key, Attr
@@ -55,9 +56,9 @@ def save_order(cart):
     recipes = dynamodb.Table('CoffeeOrders')
     recipes.put_item(Item={ 
         **{
-            'userEmail': cart['deliveryAddress']['email'],
+            'id': str(uuid.uuid4()),
             'orderDate': datetime.now().isoformat(),
-        }, 
+        },
         **cart
     })
 
