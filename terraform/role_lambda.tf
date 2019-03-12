@@ -54,7 +54,7 @@ resource "aws_iam_policy" "lambda_logging" {
 				"dynamodb:Scan",
 				"dynamodb:BatchWriteItem",
 				"dynamodb:PutItem",
-				"dynamodb:UpdateItem",
+				"dynamodb:UpdateItem"
       ],
       "Resource": "arn:aws:dynamodb:*:*:*",
       "Effect": "Allow"
