@@ -93,6 +93,7 @@ def main_handler(event, context):
         recalculate_values(cart, ingredients)
         if event['resource'] == '/cart' and event['httpMethod'] == 'POST':
             save_order(cart)
+            send_email(cart)
             return { 'statusCode': 201, } # created
         elif event['resource'] == '/cart/calculator' and event['httpMethod'] == 'PUT':
             return {
