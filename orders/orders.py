@@ -108,9 +108,11 @@ def main_handler(event, context):
             }
     
     except Exception as e:
+        er = traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__)
+        print(er)
         return {
             'statusCode': 400,
-            'body': ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))
+            'body': ''.join(er)
         }
 
 if __name__ == '__main__':
