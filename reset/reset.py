@@ -45,12 +45,37 @@ def update_recipes(dynamodb):
     })
     print('Recipes updated.')
 
+def remove_orders(dynamodb):
+    print('Removing items from Orders.')
+    client = boto3.client('dynamodb')
+    client.delete_table(TableName='CoffeeOrders')
+    waiter = client.get_waiter('table_not_exists')
+    waiter.wait(TableName='CoffeeOrders')
+    print('Table deleted.')
+
+    table = dynamodb.create_table(
+        TableName='CoffeeOrders',
+        KeySchema=[
+            { 'AttributeName': 'id', 'KeyType': 'HASH' },
+            { 'AttributeName': 'orderDate', 'KeyType': 'RANGE' },
+        ],
+        AttributeDefinitions=[
+            { 'AttributeName': 'id', 'AttributeType': 'S' },
+            { 'AttributeName': 'orderDate', 'AttributeType': 'S' },
+        ],
+        ProvisionedThroughput={
+            'ReadCapacityUnits': 1,
+            'WriteCapacityUnits': 1,
+        }
+    )
+
 def main_handler(event, context):
     dynamodb = boto3.resource('dynamodb')
     print('Connected to AWS service')
 
     update_ingredients(dynamodb)
     update_recipes(dynamodb)
+    remove_orders(dynamodb)
 
     return {
         'statusCode': 200,

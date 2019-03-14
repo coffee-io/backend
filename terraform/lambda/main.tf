@@ -3,6 +3,7 @@ variable "lambda_role_arn" {}
 variable "runtime"         { default = "python3.7" } 
 variable "memory_size"     { default = 128 }
 variable "retention"       { default = 7 }
+variable "timeout"         { default = 5 }
 
 # 
 # lambda
@@ -11,22 +12,23 @@ variable "retention"       { default = 7 }
 resource "aws_lambda_function" "lambda" {
   function_name    = "${var.name}"
   role             = "${var.lambda_role_arn}"
-	handler          = "${var.name}.main_handler"
+  handler          = "${var.name}.main_handler"
   runtime          = "${var.runtime}"
-	memory_size			 = "${var.memory_size}"
-	s3_bucket        = "coffee-artifacts"
-	s3_key           = "${var.name}.zip"
+  memory_size      = "${var.memory_size}"
+  s3_bucket        = "coffee-artifacts"
+  s3_key           = "${var.name}.zip"
+  timout           = "${var.timeout}"
 }
 
 /*
 resource "null_resource" "update_lambda" {
-	depends_on = ["aws_lambda_function.lambda"]
-	provisioner "local-exec" {
-		command = "aws lambda update-function-code --function-name ${var.name} --s3-bucket coffee-artifacts --s3-key ${var.name}.zip --publish"
-	}
-	triggers {
-		build_number = "${timestamp()}" 
-	}
+  depends_on = ["aws_lambda_function.lambda"]
+  provisioner "local-exec" {
+    command = "aws lambda update-function-code --function-name ${var.name} --s3-bucket coffee-artifacts --s3-key ${var.name}.zip --publish"
+  }
+  triggers {
+    build_number = "${timestamp()}" 
+  }
 }
 */
 
@@ -48,5 +50,5 @@ resource "aws_lambda_permission" "resource_apigw_lambda" {
 }
 
 output "lambda_arn" {
-	value = "${aws_lambda_function.lambda.arn}"
+  value = "${aws_lambda_function.lambda.arn}"
 }
