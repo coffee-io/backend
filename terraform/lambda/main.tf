@@ -17,7 +17,7 @@ resource "aws_lambda_function" "lambda" {
   memory_size      = "${var.memory_size}"
   s3_bucket        = "coffee-artifacts"
   s3_key           = "${var.name}.zip"
-  timout           = "${var.timeout}"
+  timeout          = "${var.timeout}"
 }
 
 /*
