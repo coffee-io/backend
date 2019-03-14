@@ -104,6 +104,10 @@ def main_handler(event, context):
         elif event['resource'] == '/cart/calculator' and event['httpMethod'] == 'PUT':
             return {
                 'statusCode': 200,
+                'headers': {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Credentials': True,
+                },
                 'body': json.dumps(cart, cls=DecimalEncoder, ensure_ascii=False)
             }
     
@@ -112,6 +116,10 @@ def main_handler(event, context):
         print(er)
         return {
             'statusCode': 400,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': True,
+            },
             'body': ''.join(er)
         }
 
