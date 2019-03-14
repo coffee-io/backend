@@ -63,11 +63,9 @@ def remove_orders(dynamodb):
             { 'AttributeName': 'id', 'AttributeType': 'S' },
             { 'AttributeName': 'orderDate', 'AttributeType': 'S' },
         ],
-        ProvisionedThroughput={
-            'ReadCapacityUnits': 1,
-            'WriteCapacityUnits': 1,
-        }
+        BillingMode='PAY_PER_REQUEST',
     )
+    print('Table recreated')
 
 def main_handler(event, context):
     dynamodb = boto3.resource('dynamodb')
