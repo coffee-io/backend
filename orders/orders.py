@@ -100,7 +100,13 @@ def main_handler(event, context):
         if event['resource'] == '/cart' and event['httpMethod'] == 'POST':
             save_order(cart)
             send_email(cart)
-            return { 'statusCode': 201, } # created
+            return { 
+                'statusCode': 201, # created
+                'headers': {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Credentials': True,
+                },
+            }
         elif event['resource'] == '/cart/calculator' and event['httpMethod'] == 'PUT':
             return {
                 'statusCode': 200,
