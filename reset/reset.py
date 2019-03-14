@@ -38,7 +38,7 @@ def update_recipes(dynamodb):
         'description': 'The perfect way to start your morning.',
         'size': 'medium',
         'ingredients': [
-            { 'name': 'Brewed (string)', 'percentage': Decimal(0.5), 'type':'coffee', 'color':'#610B0B', 'cost':Decimal(3.0), 'qtd': 2 },
+            { 'name': 'Brewed (strong)', 'percentage': Decimal(0.5), 'type':'coffee', 'color':'#610B0B', 'cost':Decimal(3.0), 'qtd': 2 },
             { 'name': 'Milk', 'percentage': Decimal(0.5), 'type':'liquid', 'color':'#FAFAFA', 'cost':Decimal(2.0), 'qtd': 2 },
         ],
         'totalCost': Decimal(5.0),
