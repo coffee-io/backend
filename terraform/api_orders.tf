@@ -34,7 +34,7 @@ EOF
             "address": "$elem.deliveryAddress.M.address.S",
             "city": "$elem.deliveryAddress.M.city.S",
             "state": "$elem.deliveryAddress.M.state.S",
-            "zip": "$elem.deliveryAddress.M.zip.S",
+            "zip": "$elem.deliveryAddress.M.zip.S"
         },
         "items": [
             #foreach($item in $elem.items.L){
@@ -55,6 +55,7 @@ EOF
             }#if($foreach.hasNext),
     #end
 #end
+
     ]
     }#if($foreach.hasNext),
     #end
