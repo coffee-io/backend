@@ -18,36 +18,44 @@ module "orders_get" {
   action            = "Scan"
   request_template  = <<EOF
 {
-    "TableName": "CoffeeRecipes",
-    "PrimaryKey": "userScope",
-    "KeyConditionExpression": "userScope = :k",
-    "ExpressionAttributeValues": {
-        ":k": {
-            "S": "global"
-        }
-    }
+    "TableName": "CoffeeOrders"
 }
 EOF
   response_template = <<EOF
 #set($inputRoot = $input.path('$'))
 [
     #foreach($elem in $input.path('$.Items')){
-        "recipeName": "$elem.recipeName.S",
-        "description": "$elem.description.S",
-        "size": "$elem.size.S",
-        "totalCost": $elem.totalCost.N,
-        "ingredients": [
-            #foreach($ing in $elem.ingredients.L){
-                "name": "$ing.M.name.S",
-                "type": "$ing.M.type.S",
-                "cost": $ing.M.cost.N,
-                "color": "$ing.M.color.S",
-                "qtd": $ing.M.qtd.N,
-                "percentage": $ing.M.percentage.N
+        "id": "$elem.id.S",
+        "orderDate": "$elem.orderDate.S",
+        "total": $elem.total.N,
+        "deliveryAddress": {
+            "name": "$elem.deliveryAddress.M.name.S",
+            "email": "$elem.deliveryAddress.M.email.S",
+            "address": "$elem.deliveryAddress.M.address.S",
+            "city": "$elem.deliveryAddress.M.city.S",
+            "state": "$elem.deliveryAddress.M.state.S",
+            "zip": "$elem.deliveryAddress.M.zip.S",
+        },
+        "items": [
+            #foreach($item in $elem.items.L){
+                "recipeName": "$item.M.recipeName.S",
+                "size": "$item.M.size.S",
+                "totalCost": $item.M.totalCost.N,
+                "ingredients": [
+                #foreach($ing in $item.ingredients.L){
+                    "name": "$ing.M.name.S",
+                    "type": "$ing.M.type.S",
+                    "cost": $ing.M.cost.N,
+                    "color": "$ing.M.color.S",
+                    "qtd": $ing.M.qtd.N,
+                    "percentage": $ing.M.percentage.N
+                }#if($foreach.hasNext),
+        #end
+            #end
+            ]
             }#if($foreach.hasNext),
     #end
         #end
-
         ]
     }#if($foreach.hasNext),
     #end
