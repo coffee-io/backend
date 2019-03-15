@@ -37,13 +37,14 @@ resource "aws_iam_policy" "lambda_logging" {
     },
     {
       "Action": [
-				"dynamodb:BatchGetItem",
-				"dynamodb:GetItem",
-				"dynamodb:Query",
-				"dynamodb:Scan",
-				"dynamodb:BatchWriteItem",
-				"dynamodb:PutItem",
-				"dynamodb:UpdateItem"
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteTable"
       ],
       "Resource": "arn:aws:dynamodb:*:*:*",
       "Effect": "Allow"
