@@ -52,9 +52,9 @@ EOF
         #end
             #end
 
-            ]
+                ]
             }#if($foreach.hasNext),
-    #end
+            #end
 #end
 
     ]
