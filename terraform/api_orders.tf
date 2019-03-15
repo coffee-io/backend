@@ -51,13 +51,14 @@ EOF
                         "percentage": $ing.M.percentage.N
                     }#if($foreach.hasNext),
         #end
-            #end]
+            #end
+            ]
             }#if($foreach.hasNext),
     #end
 #end
 
     ]
-    }#if($foreach.hasNext),
+            }#if($foreach.hasNext),
     #end
 #end
 
