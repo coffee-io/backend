@@ -44,7 +44,9 @@ resource "aws_iam_policy" "lambda_logging" {
         "dynamodb:BatchWriteItem",
         "dynamodb:PutItem",
         "dynamodb:UpdateItem",
-        "dynamodb:DeleteTable"
+        "dynamodb:DeleteTable",
+        "dynamodb:CreateTable",
+        "dynamodb:DescribeTable"
       ],
       "Resource": "arn:aws:dynamodb:*:*:*",
       "Effect": "Allow"
