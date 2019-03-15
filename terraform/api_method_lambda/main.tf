@@ -4,14 +4,14 @@ variable "http_method"     {}
 variable "lambda_arn"      {}
 
 data "aws_api_gateway_rest_api" "api" {
-	name = "${var.rest_api_name}"
+  name = "${var.rest_api_name}"
 }
 
 resource "aws_api_gateway_method" "method" {
   rest_api_id   = "${data.aws_api_gateway_rest_api.api.id}"
   resource_id   = "${var.resource_id}"
   http_method   = "${var.http_method}"
-	authorization = "NONE"
+  authorization = "NONE"
 }
 
 resource "aws_api_gateway_integration" "integration" {
@@ -28,12 +28,12 @@ resource "aws_api_gateway_method_response" "response_200" {
   resource_id = "${var.resource_id}"
   http_method = "${aws_api_gateway_method.method.http_method}"
   status_code = "200"
-	response_models {
-		"application/json" = "Empty",
-	}
-	response_parameters = { 
-		"method.response.header.Access-Control-Allow-Origin" = true,
-	}
+  response_models {
+    "application/json" = "Empty",
+  }
+  response_parameters = { 
+    "method.response.header.Access-Control-Allow-Origin" = true,
+  }
 }
 
 resource "aws_api_gateway_integration_response" "options_integration_response" {
@@ -41,8 +41,8 @@ resource "aws_api_gateway_integration_response" "options_integration_response" {
   resource_id = "${var.resource_id}"
   http_method = "${aws_api_gateway_method.method.http_method}"
   status_code = "${aws_api_gateway_method_response.response_200.status_code}"
-	response_parameters = {
-		"method.response.header.Access-Control-Allow-Origin" = "'*'",
-	}
-	depends_on = ["aws_api_gateway_integration.integration"]
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = "'*'",
+  }
+  depends_on = ["aws_api_gateway_integration.integration"]
 }

@@ -4,6 +4,7 @@ variable "http_method"       {}
 variable "role_arn"          {}
 variable "request_template"  {}
 variable "response_template" {}
+variable "action"            { default = "Query" }
 
 # method
 
@@ -24,7 +25,7 @@ resource "aws_api_gateway_integration" "integration" {
   http_method             = "${aws_api_gateway_method.method.http_method}"
   type                    = "AWS"
   integration_http_method = "POST"
-  uri                     = "arn:aws:apigateway:us-east-1:dynamodb:action/Query"
+  uri                     = "arn:aws:apigateway:us-east-1:dynamodb:action/${var.action}"
   credentials             = "${var.role_arn}"
   passthrough_behavior    = "WHEN_NO_TEMPLATES"
 
