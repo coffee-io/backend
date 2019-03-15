@@ -39,7 +39,7 @@ EOF
         "items": [
             #foreach($item in $elem.items.L){
                 "recipeName": "$item.M.recipeName.S",
-                "descriptions": "$item.M.description.S",
+                "description": "$item.M.description.S",
                 "size": "$item.M.size.S",
                 "totalCost": $item.M.totalCost.N,
                 "ingredients": [
