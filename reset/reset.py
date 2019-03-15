@@ -63,7 +63,10 @@ def remove_orders(dynamodb):
             { 'AttributeName': 'id', 'AttributeType': 'S' },
             { 'AttributeName': 'orderDate', 'AttributeType': 'S' },
         ],
-        BillingMode='PAY_PER_REQUEST',
+        ProvisionedThroughput={
+            'ReadCapacityUnits': 1,
+            'WriteCapacityUnits': 1
+        }
     )
     print('Table recreated')
 
