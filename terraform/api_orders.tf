@@ -42,7 +42,7 @@ EOF
                 "size": "$item.M.size.S",
                 "totalCost": $item.M.totalCost.N,
                 "ingredients": [
-                #foreach($ing in $item.ingredients.L){
+                #foreach($ing in $item.M.ingredients.L){
                     "name": "$ing.M.name.S",
                     "type": "$ing.M.type.S",
                     "cost": $ing.M.cost.N,
