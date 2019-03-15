@@ -54,7 +54,8 @@ EOF
             #end]
             }#if($foreach.hasNext),
     #end
-        #end]
+#end
+    ]
     }#if($foreach.hasNext),
     #end
 #end
